@@ -47,13 +47,16 @@ and then call the method from the client.
 
 ### incrementCounter
 
-**incrementCounter(name, [amount])** &nbsp; *server*
+**incrementCounter(countCollection, name, [amount])** &nbsp; *server*
 
 Increments a database counter and returns the new value.
 
 *Arguments*
 
 <dl>
+  <dt>countCollection: string</dt>
+  <dd>Name of collection where counter is stored.</dd>
+
   <dt>name: string</dt>
   <dd>The name of the counter to increment.</dd>
 
@@ -69,14 +72,17 @@ call.
 
 ### decrementCounter
 
-**decrementCounter(name, [amount])** &nbsp; *server*
+**decrementCounter(countCollection, name, [amount])** &nbsp; *server*
 
 Decrements a database counter and returns the new value.
 
 *Arguments*
 
 <dl>
-  <dt>name: string</dt>
+  <dt>countCollection: string</dt>
+  <dd>Name of collection where counter is stored.</dd>
+
+<dt>name: string</dt>
   <dd>The name of the counter to decrement.</dd>
 
   <dt>amount: integer</dt>
@@ -89,13 +95,16 @@ returns the new value.
 
 ### setCounter
 
-**setCounter(name, value)** &nbsp; *server*
+**setCounter(countCollection, name, value)** &nbsp; *server*
 
 Sets a counter.
 
 *Arguments*
 
 <dl>
+  <dt>countCollection: string</dt>
+  <dd>Name of collection where counter is stored.</dd>
+
   <dt>name: string</dt>
   <dd>The name of the counter to set.</dd>
 
