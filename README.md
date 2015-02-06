@@ -27,10 +27,24 @@ Counters are not themselves a reactive data source, but you can store
 the counter value into a reactive data source such as a Meteor
 document whenever you increment or decrement a counter.
 
+## mrt:mongo-counter
+
+Warning, API changed, if you have used `mrt:mongo-counter` before and want now use this package now,
+you must migrate your count collection 
+`awwx_mongo_counter` to new or update code:
+
+```js
+Mydb.insert({
+  _id: incrementCounter('awwx_mongo_counter', 'mydbcounter'),
+  ...
+});
+
+
+```
 
 ## Version
 
-1.1.0
+0.0.2
 
 Meteor linker supported:
 This implementation works with both pre-linker Meteor (0.6.4.1 and
