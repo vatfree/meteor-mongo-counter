@@ -1,4 +1,4 @@
-# konecty-mongo-counter
+# osv-mongo-counter
 
 Atomic counters stored in MongoDB.
 
