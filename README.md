@@ -2,6 +2,18 @@
 
 Atomic counters stored in MongoDB.
 
+## Synopsis
+
+```js
+
+Mydb.insert({
+  _id: incrementCounter('countCollection', 'counterName'),
+  // ... other data
+});
+```
+
+## Description
+
 Incrementing a counter returns consecutive integers (1, 2, 3...), with
 the counter stored in the database.
 
@@ -29,27 +41,20 @@ document whenever you increment or decrement a counter.
 
 ## mrt:mongo-counter
 
-Warning, API changed, if you have used `mrt:mongo-counter` before and want now use this package now,
-you must migrate your count collection 
-`awwx_mongo_counter` to new or update code:
+Warning, API changed, if you  have used `mrt:mongo-counter` before and
+want  use  this package  now,  you  must  migrate your  counters  (see
+collection `awwx_mongo_counter`):
 
-```js
-Mydb.insert({
-  _id: incrementCounter('awwx_mongo_counter', 'mydbcounter'),
-  ...
-});
+## Fork history
 
-
-```
+- Original `mrt:mongo-counter`,  use not clean name for count collection
+`awwx_mongo_counter` and not  maintained.
+- Fork `konecty:mongo-counter` - it too "Konecty" specified.
 
 ## Version
 
-0.0.2
-
-Meteor linker supported:
-This implementation works with both pre-linker Meteor (0.6.4.1 and
-below) and the new "linker" version of Meteor (0.6.5-rc12 and above).
-
+It designed for using `Meteor >= 1.0.4`, for early version you can use
+`konecty:mongo-counter@0.0.2` that have similar API (but not later)
 
 ## API
 
@@ -170,27 +175,10 @@ Since Meteor doesn't yet support Mongo's `findAndModify`, the
 implementation accesses Mongo directly without going through a Meteor
 Collection.
 
-The Mongo collection used to store counter values is
-"awwx_mongo_counter".  Accessing this collection with
-a Meteor Collection isn't recommended, because changes made by
-`incrementCounter` aren't reported back to Meteor.
-
-
-## Donate
-
-An easy and effective way to support the continued maintenance of this
-package and the development of new and useful packages is to [donate
-through Gittip](https://www.gittip.com/awwx/).
-
-Gittip is a [platform for sustainable
-crowd-funding](https://www.gittip.com/about/faq.html).
-
-Help build an ecosystem of well maintained, quality Meteor packages by
-joining the
-[Gittip Meteor Community](https://www.gittip.com/for/meteor/).
-
+Accessing this collection with a Meteor Collection isn't recommended,
+because changes made by `incrementCounter` aren't reported back to Meteor.
 
 ## Hire
 
-Need support, debugging, or development for your project?  You can
-[hire me](http://awwx.ws/hire-me) to help out.
+You can hire original author of this packages :)
+Click http://awwx.ws/hire-me
