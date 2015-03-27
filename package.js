@@ -18,6 +18,6 @@ Package.on_use(function (api) {
 });
 
 Package.on_test(function(api) {
-  api.use(['coffeescript', 'tinytest', "konecty:mongo-counter"]);
+  api.use(['coffeescript', 'tinytest', "osv:mongo-counter"]);
   api.addFiles('counter-tests.coffee', 'server');
 });
