@@ -1,20 +1,9 @@
-getRawMongoCollection = (collectionName) ->
-  if MongoInternals?
-    mongo = MongoInternals.defaultRemoteCollectionDriver().mongo
-    if mongo.rawCollection?
-      mongo.rawCollection(collectionName)
-    else
-      mongo._getCollection(collectionName)
-  else
-    Meteor._RemoteCollectionDriver.mongo._getCollection(collectionName)
-
-
-getCounterCollection = (collectionName) ->
-  getRawMongoCollection(collectionName)
-
-
 callCounter = (method, collectionName, args...) ->
-  Counters = getCounterCollection(collectionName)
+  # TODO: How about pass not only collection name, but mongo instance
+  # like MongoInternals.RemoteCollectionDriver("mongodb://127.0.0.1:3001/meteor");
+  # However I don't need use several database for counters
+  mongo = MongoInternals.defaultRemoteCollectionDriver().mongo
+  Counters = mongo.rawCollection(collectionName)
   Meteor.wrapAsync(_.bind(Counters[method], Counters))(args...)
 
 _deleteCounters = (collectionName) ->
