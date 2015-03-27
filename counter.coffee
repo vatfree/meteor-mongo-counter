@@ -15,13 +15,7 @@ getCounterCollection = (collectionName) ->
 
 callCounter = (method, collectionName, args...) ->
   Counters = getCounterCollection(collectionName)
-  if Meteor.wrapAsync?
-    Meteor.wrapAsync(_.bind(Counters[method], Counters))(args...)
-  else
-    future = new (Npm.require(Npm.require('path').join('fibers', 'future')))()
-    Counters[method].call(Counters, args..., future.resolver())
-    future.wait()
-
+  Meteor.wrapAsync(_.bind(Counters[method], Counters))(args...)
 
 _deleteCounters = (collectionName) ->
   callCounter('remove', collectionName, {}, {safe: true})
