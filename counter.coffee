@@ -1,6 +1,10 @@
 getRawMongoCollection = (collectionName) ->
   if MongoInternals?
-    MongoInternals.defaultRemoteCollectionDriver().mongo._getCollection(collectionName)
+    mongo = MongoInternals.defaultRemoteCollectionDriver().mongo
+    if mongo.rawCollection?
+      mongo.rawCollection(collectionName)
+    else
+      mongo._getCollection(collectionName)
   else
     Meteor._RemoteCollectionDriver.mongo._getCollection(collectionName)
 
