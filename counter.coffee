@@ -31,7 +31,8 @@ _setCounter = (collectionName, counterName, value) ->
     'update',
     collectionName,
     {_id: counterName},
-    {$set: {next_val: value}}
+    {$set: {next_val: value}},
+    {upsert: true}
   )
   return
 

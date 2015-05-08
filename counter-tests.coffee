@@ -11,3 +11,14 @@ Tinytest.add 'mongo-counter set counter', (test) ->
   setCounter('_counters', 'foo', 100)
   test.equal incrementCounter('_counters', 'foo'), 101
   test.equal incrementCounter('_counters', 'bar'), 1
+
+Tinytest.add 'mongo-counter set counter again', (test) ->
+  setCounter('_counters', 'bar', 100)
+  test.equal decrementCounter('_counters', 'bar'), 99
+    
+
+Tinytest.add 'mongo-counter run setCounter on fresh collection', (test) ->
+  deleteCounters('_counters2')
+  setCounter('_counters2', 'bar', 100)
+  test.equal decrementCounter('_counters2', 'bar'), 99
+ 
