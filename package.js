@@ -7,7 +7,7 @@ Package.describe({
 
 Package.on_use(function (api) {
   api.versionsFrom("METEOR@1.0.4");
-  api.use(['coffeescript', 'mongo-livedata'], 'server');
+  api.use(['coffeescript', 'mongo-livedata','underscore'], 'server');
   api.addFiles('counter.coffee', 'server');
   if (api.export) {
     api.export('incrementCounter', 'server');
