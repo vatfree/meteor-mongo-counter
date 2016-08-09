@@ -19,7 +19,7 @@ _incrementCounter = (collectionName, counterName, amount = 1) ->
     {$inc: {next_val: amount}},      # update
     {new: true, upsert: true},  # options
   )                             # callback added by wrapAsync
-  return newDoc.next_val
+  return newDoc?.value?.next_val or newDoc.next_val
 
 
 _decrementCounter = (collectionName, counterName, amount = 1) ->
