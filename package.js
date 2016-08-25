@@ -1,11 +1,11 @@
 Package.describe({
   summary: "Atomic counters stored in MongoDB",
-  version: "0.3.0",
+  version: "0.3.3",
   git: "https://github.com/osv/meteor-mongo-counter.git",
   name: "osv:mongo-counter"
 });
 
-Package.on_use(function (api) {
+Package.onUse(function (api) {
   api.versionsFrom("METEOR@1.0.4");
   api.use(['coffeescript', 'mongo-livedata','underscore'], 'server');
   api.addFiles('counter.coffee', 'server');
@@ -17,7 +17,9 @@ Package.on_use(function (api) {
   }
 });
 
-Package.on_test(function(api) {
-  api.use(['coffeescript', 'tinytest', "osv:mongo-counter"]);
+Package.onTest(function(api) {
+  api.use('coffeescript');
+  api.use('tinytest');
+  api.use('osv:mongo-counter');
   api.addFiles('counter-tests.coffee', 'server');
 });
