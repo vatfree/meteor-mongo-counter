@@ -1,7 +1,4 @@
 callCounter = (method, collectionName, args...) ->
-  # TODO: How about pass not only collection name, but mongo instance
-  # like MongoInternals.RemoteCollectionDriver("mongodb://127.0.0.1:3001/meteor");
-  # However I don't need use several database for counters
   mongo = MongoInternals.defaultRemoteCollectionDriver().mongo
   Counters = mongo.rawCollection(collectionName)
   Meteor.wrapAsync(_.bind(Counters[method], Counters))(args...)
@@ -36,14 +33,23 @@ _setCounter = (collectionName, counterName, value) ->
   )
   return
 
+_getCounter = (collectionName, counterName) ->
+  result = callCounter(
+    'findOne',
+    collectionName,
+    {_id: counterName},
+  )
+  return if result != null then result.next_val else 0
 
 if Package?
   incrementCounter = _incrementCounter
   decrementCounter = _decrementCounter
   setCounter = _setCounter
+  getCounter = _getCounter
   deleteCounters = _deleteCounters
 else
   @incrementCounter = _incrementCounter
   @decrementCounter = _decrementCounter
   @setCounter = _setCounter
+  @getCounter = _getCounter
   @deleteCounters = _deleteCounters

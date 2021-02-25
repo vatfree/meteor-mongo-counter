@@ -6,13 +6,14 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("METEOR@1.0.4");
+  api.versionsFrom("METEOR@2.0");
   api.use(['coffeescript', 'mongo-livedata','underscore'], 'server');
   api.addFiles('counter.coffee', 'server');
   if (api.export) {
     api.export('incrementCounter', 'server');
     api.export('decrementCounter', 'server');
     api.export('setCounter', 'server');
+    api.export('getCounter', 'server');
     api.export('deleteCounters', 'server', {testOnly: true});
   }
 });
