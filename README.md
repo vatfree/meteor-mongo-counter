@@ -50,10 +50,12 @@ collection `awwx_mongo_counter`):
 - Original `mrt:mongo-counter`,  use not clean name for count collection
 `awwx_mongo_counter` and not  maintained.
 - Fork `konecty:mongo-counter` - it too "Konecty" specified.
+- Fork `osv-mongo-counter`
+- Form `niklasdahlheimer-mongo-counter`
 
 ## Version
 
-It designed for using `Meteor >= 1.0.4`, for early version you can use
+It designed for using `Meteor >= 2.0.0`, for early version you can use
 `konecty:mongo-counter@0.0.2` that have similar API (but not later)
 
 ## API
@@ -138,6 +140,23 @@ value.  (If a counter was currently 10 and one method called
 `incrementCounter` while another simultaneously called `setCounter`
 with a value of 0, it would be indeterminate whether the first method
 received 11 or 1).
+
+### getCounter (added)
+
+**getCounter(countCollection, name)** &nbsp; *server*
+
+gets the counter WITHOUT incrementing it.
+
+*Arguments*
+
+<dl>
+  <dt>countCollection: string</dt>
+  <dd>Name of collection where counter is stored.</dd>
+
+  <dt>name: string</dt>
+  <dd>The name of the counter to get.</dd>
+
+</dl>
 
 
 ## Using a counter for a humanly readable id
