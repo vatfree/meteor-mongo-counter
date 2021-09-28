@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Atomic counters stored in MongoDB",
-  version: "0.3.5",
-  git: "https://github.com/osv/meteor-mongo-counter.git",
+  version: "0.3.6",
+  git: "https://github.com/niklasdahlheimer/meteor-mongo-counter.git",
   name: "osv:mongo-counter"
 });
 
