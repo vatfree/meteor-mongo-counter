@@ -3,11 +3,11 @@
 
   "description": "Atomic counters stored in MongoDB.",
 
-  "homepage": "https://github.com/awwx/meteor-mongo-counter#readme",
+  "homepage": "https://github.com/Back2bikes/meteor-mongo-counter#readme",
 
-  "author": "Andrew Wilcox",
+  "author": "Andrew Wilcox/Mike King",
 
-  "version": "1.1.0",
+  "version": "2.0.0",
 
-  "git": "https://github.com/awwx/meteor-mongo-counter.git"
+  "git": "https://github.com/Back2bikes/meteor-mongo-counter.git"
 }

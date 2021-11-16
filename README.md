@@ -1,13 +1,6 @@
-# Unsupported
-
-This is an ancient implementation that I wrote long ago and no longer support.
-
-You might try one of the forks to see if there's one that would work for you.
-
-
 # mongo-counter
 
-Atomic counters stored in MongoDB.
+Atomic counters stored in MongoDB. Updated for modern Meteor and ecmascript
 
 Incrementing a counter returns consecutive integers (1, 2, 3...), with
 the counter stored in the database.
@@ -35,15 +28,6 @@ the counter value into a reactive data source such as a Meteor
 document whenever you increment or decrement a counter.
 
 
-## Version
-
-1.1.0
-
-Meteor linker supported:
-This implementation works with both pre-linker Meteor (0.6.4.1 and
-below) and the new "linker" version of Meteor (0.6.5-rc12 and above).
-
-
 ## API
 
 Note that this API is defined on the server only, and that these
@@ -54,7 +38,7 @@ and then call the method from the client.
 
 ### incrementCounter
 
-**incrementCounter(name, [amount])** &nbsp; *server*
+**incrementCounter(collection, name, [amount])** &nbsp; *server*
 
 Increments a database counter and returns the new value.
 
@@ -76,7 +60,7 @@ call.
 
 ### decrementCounter
 
-**decrementCounter(name, [amount])** &nbsp; *server*
+**decrementCounter(collection, name, [amount])** &nbsp; *server*
 
 Decrements a database counter and returns the new value.
 
@@ -96,7 +80,7 @@ returns the new value.
 
 ### setCounter
 
-**setCounter(name, value)** &nbsp; *server*
+**setCounter(collection, name, value)** &nbsp; *server*
 
 Sets a counter.
 
@@ -158,3 +142,24 @@ The Mongo collection used to store counter values is
 "awwx_mongo_counter".  Accessing this collection with
 a Meteor Collection isn't recommended, because changes made by
 `incrementCounter` aren't reported back to Meteor.
+
+
+## Example
+
+```
+// Declare the collection to store the counters in
+const Counters = new Mongo.Collection('counters')
+
+// A function to return the next job number 
+
+export const getNextJobNo = () => {
+    return incrementCounter(Counters, 'jobs', 1)
+}
+
+// A function to return the next invoice number 
+
+export const getNextInvoiceNo = () => {
+    return incrementCounter(Counters, 'invoice', 1)
+}
+
+```
