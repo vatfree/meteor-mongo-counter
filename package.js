@@ -1,5 +1,5 @@
 Package.describe({
-    name: 'niklasdahlheimer:mongo-counter',
+    name: 'niklasdada:mongo-counter',
     summary: 'Atomic counters stored in MongoDB (rewritten in JS)',
     version: '1.0.0',
     git: 'https://github.com/niklasdahlheimer/meteor-mongo-counter',
@@ -19,7 +19,7 @@ Package.onUse(function (api) {
 })
 
 Package.onTest(function (api) {
-    api.use('niklasdahlheimer:mongo-counter')
+    api.use('niklasdada:mongo-counter')
     api.use('ecmascript')
     api.use('mongo')
     api.use('tinytest')
