@@ -37,10 +37,21 @@ const _setCounter = function (collection, counterName, value) {
   callCounter('update', collection, {_id: counterName}, {$set: {next_val: value}})
 }
 
+const _getCounter = function (collection, counterName) {
+    const result = callCounter(
+      'findOne',
+      collection,
+      {_id: counterName},
+    )
+  return result != null ? result.next_val : 0
+}
+
+
 // Any variables defined without const/var/let are 'published' for the package... this is
 // done in package.js
 
 incrementCounter = _incrementCounter
 decrementCounter = _decrementCounter
 setCounter = _setCounter
+getCounter = _getCounter
 deleteCounters = _deleteCounters

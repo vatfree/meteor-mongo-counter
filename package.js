@@ -13,6 +13,7 @@ Package.onUse(function (api) {
     api.export('incrementCounter', 'server')
     api.export('decrementCounter', 'server')
     api.export('setCounter', 'server')
+    api.export('getCounter', 'server')
     api.export('deleteCounters', 'server', { testOnly: true })
   }
 })
