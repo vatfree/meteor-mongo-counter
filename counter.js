@@ -5,45 +5,45 @@
 const getCounterCollection = (collection) => collection.rawCollection()
 
 const callCounter = function (method, collection, ...args) {
-  const Counters = getCounterCollection(collection)
-  return Meteor.wrapAsync(Counters[method].bind(Counters))(...Array.from(args || []))
+    const Counters = getCounterCollection(collection)
+    return Meteor.wrapAsync(Counters[method].bind(Counters))(...Array.from(args || []))
 }
 
 const _deleteCounters = (collection) =>
-  callCounter('remove', collection, {}, {safe: true})
+    callCounter('remove', collection, {}, {safe: true})
 
 const _incrementCounter = function (collection, counterName, amount = 1) {
-  const newDoc = callCounter(
-    'findOneAndUpdate',
-    collection,
-    {_id: counterName}, // query
-    {$inc: {next_val: amount}}, // update
-    {returnDocument: 'after', upsert: true} // options
-  ) // callback added by wrapAsync
-  if (newDoc && newDoc.value && newDoc.value.next_val) {
-    return newDoc.value.next_val
-  }
-  return null
+    const newDoc = callCounter(
+        'findOneAndUpdate',
+        collection,
+        {_id: counterName}, // query
+        {$inc: {next_val: amount}}, // update
+        {returnDocument: 'after', upsert: true} // options
+    ) // callback added by wrapAsync
+    if (newDoc && newDoc.value && newDoc.value.next_val) {
+        return newDoc.value.next_val
+    }
+    return null
 }
 
 const _decrementCounter = function (collection, counterName, amount) {
-  if (amount == null) {
-    amount = 1
-  }
-  return _incrementCounter(collection, counterName, -amount)
+    if (amount == null) {
+        amount = 1
+    }
+    return _incrementCounter(collection, counterName, -amount)
 }
 
 const _setCounter = function (collection, counterName, value) {
-  callCounter('update', collection, {_id: counterName}, {$set: {next_val: value}})
+    callCounter('update', collection, {_id: counterName}, {$set: {next_val: value}})
 }
 
 const _getCounter = function (collection, counterName) {
     const result = callCounter(
-      'findOne',
-      collection,
-      {_id: counterName},
+        'findOne',
+        collection,
+        {_id: counterName},
     )
-  return result != null ? result.next_val : 0
+    return result != null ? result.next_val : 0
 }
 
 
