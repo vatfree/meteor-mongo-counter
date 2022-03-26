@@ -16,6 +16,17 @@ Tinytest.add('mongo-counter dec counters', (test) => {
     test.equal(decrementCounter(Counters, 'foo'), 12)
 })
 
+Tinytest.add('mongo-counter get counter', (test) => {
+    setCounter(Counters, 'foo', 100)
+    test.equal(getCounter(Counters, 'foo'), 100)
+    test.equal(decrementCounter(Counters, 'foo'), 99)
+    test.equal(getCounter(Counters, 'foo'), 99)
+    test.equal(incrementCounter(Counters, 'foo'), 100)
+    test.equal(getCounter(Counters, 'foo'), 100)
+    test.equal(incrementCounter(Counters, 'foo'), 101)
+    test.equal(getCounter(Counters, 'foo'), 101)
+})
+
 Tinytest.add('mongo-counter set counter', (test) => {
     setCounter(Counters, 'foo', 100)
     test.equal(incrementCounter(Counters, 'foo'), 101)
