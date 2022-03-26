@@ -21,5 +21,7 @@ Package.onUse(function (api) {
 Package.onTest(function (api) {
   api.use('ecmascript')
   api.use('tinytest')
+  api.use('mongo')
   api.use('niklasdahlheimer:mongo-counter')
+  api.addFiles('counter.tests.js', 'server');
 })
