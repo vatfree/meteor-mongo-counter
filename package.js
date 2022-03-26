@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'Back2bikes:mongo-counter',
+  name: 'niklasdahlheimer:mongo-counter',
   summary: 'Atomic counters stored in MongoDB',
   version: '1.0.0',
-  git: 'git@github.com:Back2bikes/meteor-mongo-counter.git',
+  git: 'https://github.com/niklasdahlheimer/meteor-mongo-counter',
 })
 
 Package.onUse(function (api) {
@@ -21,5 +21,5 @@ Package.onUse(function (api) {
 Package.onTest(function (api) {
   api.use('ecmascript')
   api.use('tinytest')
-  api.use('Back2bikes:mongo-counter')
+  api.use('niklasdahlheimer:mongo-counter')
 })
