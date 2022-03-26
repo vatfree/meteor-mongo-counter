@@ -12,10 +12,7 @@ const callCounter = function (method, collection, ...args) {
 const _deleteCounters = (collection) =>
   callCounter('remove', collection, {}, {safe: true})
 
-const _incrementCounter = function (collection, counterName, amount) {
-  if (amount == null) {
-    amount = 1
-  }
+const _incrementCounter = function (collection, counterName, amount = 1) {
   const newDoc = callCounter(
     'findAndModify',
     collection,
