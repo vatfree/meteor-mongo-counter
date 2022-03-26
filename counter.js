@@ -20,21 +20,20 @@ const _incrementCounter = function (collection, counterName, amount = 1) {
         {$inc: {next_val: amount}}, // update
         {returnDocument: 'after', upsert: true} // options
     ) // callback added by wrapAsync
-    if (newDoc && newDoc.value && newDoc.value.next_val) {
-        return newDoc.value.next_val
-    }
-    return null
+
+    return (newDoc && newDoc.value && newDoc.value.next_val) ? newDoc.value.next_val : null
 }
 
-const _decrementCounter = function (collection, counterName, amount) {
-    if (amount == null) {
-        amount = 1
-    }
+const _decrementCounter = function (collection, counterName, amount = 1) {
     return _incrementCounter(collection, counterName, -amount)
 }
 
 const _setCounter = function (collection, counterName, value) {
-    callCounter('update', collection, {_id: counterName}, {$set: {next_val: value}})
+    return callCounter('update',
+        collection,
+        {_id: counterName},
+        {$set: {next_val: value}}
+    )
 }
 
 const _getCounter = function (collection, counterName) {
