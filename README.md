@@ -1,5 +1,7 @@
 # mongo-counter
 
+Atomic counters stored in MongoDB. Updated for modern Meteor and ecmascript
+
 ## Notes on this Fork
 
 This is a fork of osv/meteor-mongo-counter. Changes:
@@ -9,11 +11,8 @@ This is a fork of osv/meteor-mongo-counter. Changes:
 - Pass Meteor-Collection instance instead of name as string
 - fixes for Meteor 2.6
 
-(below the original documentation)
-
 ---
-
-Atomic counters stored in MongoDB. Updated for modern Meteor and ecmascript
+###(OUTDATED) original documentation
 
 Incrementing a counter returns consecutive integers (1, 2, 3...), with the counter stored in the database.
 
