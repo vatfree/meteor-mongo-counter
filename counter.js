@@ -14,12 +14,11 @@ const _deleteCounters = (collection) =>
 
 const _incrementCounter = function (collection, counterName, amount = 1) {
   const newDoc = callCounter(
-    'findAndModify',
+    'findOneAndUpdate',
     collection,
-    { _id: counterName }, // query
-    null, // sort
-    { $inc: { next_val: amount } }, // update
-    { new: true, upsert: true } // options
+    {_id: counterName}, // query
+    {$inc: {next_val: amount}}, // update
+    {returnDocument: 'after', upsert: true} // options
   ) // callback added by wrapAsync
   if (newDoc && newDoc.value && newDoc.value.next_val) {
     return newDoc.value.next_val
