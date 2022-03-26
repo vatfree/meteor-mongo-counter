@@ -6,7 +6,7 @@ Package.describe({
 })
 
 Package.onUse(function (api) {
-  api.versionsFrom('1.7.1')
+  api.versionsFrom('METEOR@2.0')
   api.use(['ecmascript'], 'server')
   api.addFiles('counter.js', 'server')
   if (api.export) {
