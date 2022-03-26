@@ -10,7 +10,7 @@ const callCounter = function (method, collection, ...args) {
 }
 
 const _deleteCounters = (collection) =>
-    callCounter('remove', collection, {}, {safe: true})
+    callCounter('deleteMany', collection, {}, {safe: true})
 
 const _incrementCounter = function (collection, counterName, amount = 1) {
     const newDoc = callCounter(
@@ -29,10 +29,11 @@ const _decrementCounter = function (collection, counterName, amount = 1) {
 }
 
 const _setCounter = function (collection, counterName, value) {
-    return callCounter('update',
+    return callCounter('updateOne',
         collection,
         {_id: counterName},
-        {$set: {next_val: value}}
+        {$set: {next_val: value}},
+        {upsert: true}
     )
 }
 
