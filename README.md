@@ -1,18 +1,6 @@
-# osv-mongo-counter
+# mongo-counter
 
-Atomic counters stored in MongoDB.
-
-## Synopsis
-
-```js
-
-Mydb.insert({
-  _id: incrementCounter('countCollection', 'counterName'),
-  // ... other data
-});
-```
-
-## Description
+Atomic counters stored in MongoDB. Updated for modern Meteor and ecmascript
 
 Incrementing a counter returns consecutive integers (1, 2, 3...), with
 the counter stored in the database.
@@ -39,24 +27,6 @@ Counters are not themselves a reactive data source, but you can store
 the counter value into a reactive data source such as a Meteor
 document whenever you increment or decrement a counter.
 
-## mrt:mongo-counter
-
-Warning, API changed, if you  have used `mrt:mongo-counter` before and
-want  use  this package  now,  you  must  migrate your  counters  (see
-collection `awwx_mongo_counter`):
-
-## Fork history
-
-- Original `mrt:mongo-counter`,  use not clean name for count collection
-`awwx_mongo_counter` and not  maintained.
-- Fork `konecty:mongo-counter` - it too "Konecty" specified.
-- Fork `osv-mongo-counter`
-- Form `niklasdahlheimer-mongo-counter`
-
-## Version
-
-It designed for using `Meteor >= 2.0.0`, for early version you can use
-`konecty:mongo-counter@0.0.2` that have similar API (but not later)
 
 ## API
 
@@ -68,16 +38,13 @@ and then call the method from the client.
 
 ### incrementCounter
 
-**incrementCounter(countCollection, name, [amount])** &nbsp; *server*
+**incrementCounter(collection, name, [amount])** &nbsp; *server*
 
 Increments a database counter and returns the new value.
 
 *Arguments*
 
 <dl>
-  <dt>countCollection: string</dt>
-  <dd>Name of collection where counter is stored.</dd>
-
   <dt>name: string</dt>
   <dd>The name of the counter to increment.</dd>
 
@@ -93,17 +60,14 @@ call.
 
 ### decrementCounter
 
-**decrementCounter(countCollection, name, [amount])** &nbsp; *server*
+**decrementCounter(collection, name, [amount])** &nbsp; *server*
 
 Decrements a database counter and returns the new value.
 
 *Arguments*
 
 <dl>
-  <dt>countCollection: string</dt>
-  <dd>Name of collection where counter is stored.</dd>
-
-<dt>name: string</dt>
+  <dt>name: string</dt>
   <dd>The name of the counter to decrement.</dd>
 
   <dt>amount: integer</dt>
@@ -116,16 +80,13 @@ returns the new value.
 
 ### setCounter
 
-**setCounter(countCollection, name, value)** &nbsp; *server*
+**setCounter(collection, name, value)** &nbsp; *server*
 
 Sets a counter.
 
 *Arguments*
 
 <dl>
-  <dt>countCollection: string</dt>
-  <dd>Name of collection where counter is stored.</dd>
-
   <dt>name: string</dt>
   <dd>The name of the counter to set.</dd>
 
@@ -140,23 +101,6 @@ value.  (If a counter was currently 10 and one method called
 `incrementCounter` while another simultaneously called `setCounter`
 with a value of 0, it would be indeterminate whether the first method
 received 11 or 1).
-
-### getCounter (added)
-
-**getCounter(countCollection, name)** &nbsp; *server*
-
-gets the counter WITHOUT incrementing it.
-
-*Arguments*
-
-<dl>
-  <dt>countCollection: string</dt>
-  <dd>Name of collection where counter is stored.</dd>
-
-  <dt>name: string</dt>
-  <dd>The name of the counter to get.</dd>
-
-</dl>
 
 
 ## Using a counter for a humanly readable id
@@ -194,10 +138,28 @@ Since Meteor doesn't yet support Mongo's `findAndModify`, the
 implementation accesses Mongo directly without going through a Meteor
 Collection.
 
-Accessing this collection with a Meteor Collection isn't recommended,
-because changes made by `incrementCounter` aren't reported back to Meteor.
+The Mongo collection used to store counter values is
+"awwx_mongo_counter".  Accessing this collection with
+a Meteor Collection isn't recommended, because changes made by
+`incrementCounter` aren't reported back to Meteor.
 
-## Hire
 
-You can hire original author of this packages :)
-Click http://awwx.ws/hire-me
+## Example
+
+```
+// Declare the collection to store the counters in
+const Counters = new Mongo.Collection('counters')
+
+// A function to return the next job number 
+
+export const getNextJobNo = () => {
+    return incrementCounter(Counters, 'jobs', 1)
+}
+
+// A function to return the next invoice number 
+
+export const getNextInvoiceNo = () => {
+    return incrementCounter(Counters, 'invoice', 1)
+}
+
+```
