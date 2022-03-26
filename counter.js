@@ -1,5 +1,5 @@
 // counter.js
-// Converted from counter.coffee 
+// Converted from counter.coffee
 //
 
 const getCounterCollection = (collection) => collection.rawCollection()
@@ -10,7 +10,7 @@ const callCounter = function (method, collection, ...args) {
 }
 
 const _deleteCounters = (collection) =>
-  callCounter('remove', collection, {}, { safe: true })
+  callCounter('remove', collection, {}, {safe: true})
 
 const _incrementCounter = function (collection, counterName, amount) {
   if (amount == null) {
@@ -38,7 +38,7 @@ const _decrementCounter = function (collection, counterName, amount) {
 }
 
 const _setCounter = function (collection, counterName, value) {
-  callCounter('update', collection, { _id: counterName }, { $set: { next_val: value } })
+  callCounter('update', collection, {_id: counterName}, {$set: {next_val: value}})
 }
 
 // Any variables defined without const/var/let are 'published' for the package... this is
