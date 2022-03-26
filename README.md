@@ -7,9 +7,9 @@ Atomic counters stored in MongoDB. Updated for modern Meteor and ecmascript
 This is a fork of osv/meteor-mongo-counter. Changes:
 
 - use codebase rewritten in JS from [Back2bikes](https://github.com/Back2bikes/meteor-mongo-counter)
-- added `getCounter()` function to request current counter value without changing it
-- Pass Meteor-Collection instance instead of name as string
-- fixes for Meteor 2.6
+- added `getCounter()` to request current counter value **without** changing it
+- **BREAKING** Pass Meteor-Collection instance instead of name as string
+- compatible with Meteor >= 2.6 (MongoDB 5.0)
 
 ---
 ###(OUTDATED) original documentation

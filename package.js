@@ -1,6 +1,6 @@
 Package.describe({
     name: 'niklasdada:mongo-counter',
-    summary: 'Atomic counters stored in MongoDB (rewritten in JS)',
+    summary: 'Atomic counters stored in MongoDB (rewritten in JS, added getCounter(), compatible with Meteor 2.6)',
     version: '1.0.0',
     git: 'https://github.com/niklasdahlheimer/meteor-mongo-counter',
 })
