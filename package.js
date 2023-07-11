@@ -1,8 +1,8 @@
 Package.describe({
-    name: 'niklasdada:mongo-counter',
+    name: 'vatfree:mongo-counter',
     summary: 'Atomic counters stored in MongoDB (rewritten in JS, added getCounter(), compatible with Meteor 2.6)',
-    version: '1.0.1',
-    git: 'https://github.com/niklasdahlheimer/meteor-mongo-counter.git',
+    version: '0.1.3',
+    git: 'https://github.com/vatfree/meteor-mongo-counter.git',
 })
 
 Package.onUse(function (api) {
